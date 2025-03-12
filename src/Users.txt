@@ -1,0 +1,10 @@
+Superman,S1234,
+Davion,D1234,
+Andrew,A1234,
+Gabrielle,G1234,
+Luke,L1234,
+Nathan,N1234,This is my bio 
+Filip,F1234,I'm Polish 
+Chris,C1234,Generally I keep my bios completely empty 
+Digo,D1234,Life could be a dream if I could take you out to paradise up above and tell me darling I'm the only one that you love 
+Batman,B1234,

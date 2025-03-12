@@ -1,0 +1,11 @@
+1,Nathan,Superman is Cool,8,5
+2,Andrew,Waterbottles like to be water,9,1
+3,Nathan,Superman is Cool,5,3
+4,Andrew,Waterbottles like to be water,6,3
+5,Nathan,Superman likes eggs,0,0
+6,Nathan,Ipads dont fly on airplanes,2,1
+7,Digo,Testing numbers,8,0
+8,Digo,Tester,0,0
+9,Nathan,Check,0,0
+11,Digo,Coding is cool,1,1
+13,Digo,Wow, you can really dance,0,0
