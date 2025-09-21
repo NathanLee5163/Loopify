@@ -22,14 +22,14 @@ public class User implements UserInterface {
         setUsername(username);    // Set the username, checking for uniqueness
         setPassword(password);    // Set the password with validation
 
-        f = new File("Resources/" + username + "s_Friends.txt");
+        f = new File("../Resources/" + username + "s_Friends.txt");
         try {
             f.createNewFile();
         } catch (IOException e) {
             System.out.println("File already exists");
         }
 
-        b = new File("Resources/" + username + "s_Blocklist.txt");
+        b = new File("../Resources/" + username + "s_Blocklist.txt");
         try {
             b.createNewFile();
         } catch (IOException e) {
@@ -80,7 +80,7 @@ public class User implements UserInterface {
         if (!isValidPassword(password)) {
             throw new InvalidInputException("Password must contain at least one capital letter.");
         } else {
-            try (BufferedReader br = new BufferedReader(new FileReader("src/Users.txt"))) {
+            try (BufferedReader br = new BufferedReader(new FileReader("Users.txt"))) {
                 String line = br.readLine();
                 ArrayList<String[]> tempUsers = new ArrayList<>();
 
@@ -91,7 +91,7 @@ public class User implements UserInterface {
                     line = br.readLine();
                 }
 
-                try (BufferedWriter bw = new BufferedWriter(new FileWriter("src/Users.txt"))) {
+                try (BufferedWriter bw = new BufferedWriter(new FileWriter("Users.txt"))) {
                     for (int i = 0; i < tempUsers.size(); i++) {
                         line = "";
                         for (int j = 0; j < tempUsers.get(i).length; j++) {
@@ -119,7 +119,7 @@ public class User implements UserInterface {
             throw new UserNotFoundException("User not found.");
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader("Resources/" + username + "s_Friends.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("../Resources/" + username + "s_Friends.txt"))) {
             String line = br.readLine();
 
             while (line != null) {
@@ -136,7 +136,7 @@ public class User implements UserInterface {
             e.printStackTrace();
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader("Resources/" + username + "s_Blocklist.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("../Resources/" + username + "s_Blocklist.txt"))) {
             String line = br.readLine();
 
             while (line != null) {
@@ -172,7 +172,7 @@ public class User implements UserInterface {
         } else if (friends.contains(user)) {
             throw new UserNotFoundException("User is already friend.");
         } else {
-            try (BufferedWriter br = new BufferedWriter(new FileWriter("Resources/" + username + "s_Friends.txt", true))) {
+            try (BufferedWriter br = new BufferedWriter(new FileWriter("../Resources/" + username + "s_Friends.txt", true))) {
                 br.write(user.getUsername() + System.lineSeparator());
                 friends.add(user);
             } catch (IOException e) {
@@ -187,7 +187,7 @@ public class User implements UserInterface {
             throw new UserNotFoundException("User not found.");
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader("Resources/" + username + "s_Friends.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("../Resources/" + username + "s_Friends.txt"))) {
             String line = br.readLine();
 
             while (line != null) {
@@ -209,7 +209,7 @@ public class User implements UserInterface {
         } else {
             friends.remove(user);
 
-            try (BufferedWriter br = new BufferedWriter(new FileWriter("Resources/" + username + "s_Friends.txt"))) {
+            try (BufferedWriter br = new BufferedWriter(new FileWriter("../Resources/" + username + "s_Friends.txt"))) {
                 for (int i = 0; i < friends.size(); i++) {
                     br.write(friends.get(i).getUsername() + System.lineSeparator());
                 }
@@ -222,7 +222,7 @@ public class User implements UserInterface {
     @Override
     //changed getters for friends and blocklist
     public User[] getFriends() {
-        try (BufferedReader br = new BufferedReader(new FileReader("Resources/" + username + "s_Friends.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("../Resources/" + username + "s_Friends.txt"))) {
             String line = br.readLine();
 
             while (line != null) {
@@ -252,7 +252,7 @@ public class User implements UserInterface {
             throw new UserNotFoundException("User not found.");
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader("Resources/" + username + "s_Blocklist.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("../Resources/" + username + "s_Blocklist.txt"))) {
             String line = br.readLine();
 
             while (line != null) {
@@ -272,7 +272,7 @@ public class User implements UserInterface {
         if (blocklist.contains(user)) {
             throw new UserNotFoundException("User is already blocked.");
         } else {
-            try (BufferedWriter br = new BufferedWriter(new FileWriter("Resources/" + username + "s_Blocklist.txt", true))) {
+            try (BufferedWriter br = new BufferedWriter(new FileWriter("../Resources/" + username + "s_Blocklist.txt", true))) {
                 br.write(user.getUsername() + System.lineSeparator());
                 blocklist.add(user);
                 removeFriend(user);
@@ -288,7 +288,7 @@ public class User implements UserInterface {
             throw new UserNotFoundException("User not found.");
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader("Resources/" + username + "s_Blocklist.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("../Resources/" + username + "s_Blocklist.txt"))) {
             String line = br.readLine();
 
             while (line != null) {
@@ -310,7 +310,7 @@ public class User implements UserInterface {
         } else {
             blocklist.remove(user);
 
-            try (BufferedWriter br = new BufferedWriter(new FileWriter("Resources/" + username + "s_Blocklist.txt"))) {
+            try (BufferedWriter br = new BufferedWriter(new FileWriter("../Resources/" + username + "s_Blocklist.txt"))) {
                 for (int i = 0; i < blocklist.size(); i++) {
                     br.write(blocklist.get(i).getUsername() + System.lineSeparator());
                 }
@@ -322,7 +322,7 @@ public class User implements UserInterface {
 
     @Override
     public User[] getBlocklist() {
-        try (BufferedReader br = new BufferedReader(new FileReader("Resources/" + username + "s_Blocklist.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("../Resources/" + username + "s_Blocklist.txt"))) {
             String line = br.readLine();
 
             while (line != null) {
@@ -347,7 +347,7 @@ public class User implements UserInterface {
     }
 
     public boolean isBlocked(String usernameSearch) {
-        try (BufferedReader br = new BufferedReader(new FileReader("Resources/" + username + "s_Blocklist.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("../Resources/" + username + "s_Blocklist.txt"))) {
             String line = br.readLine();
 
             while (line != null) {
@@ -399,7 +399,7 @@ public class User implements UserInterface {
         } else if (bio.contains(",")) {
             throw new InvalidInputException("Bio cannot contain a comma");
         } else {
-            try (BufferedReader br = new BufferedReader(new FileReader("src/Users.txt"))) {
+            try (BufferedReader br = new BufferedReader(new FileReader("Users.txt"))) {
                 String line = br.readLine();
                 ArrayList<String[]> tempUsers = new ArrayList<>();
 
@@ -410,7 +410,7 @@ public class User implements UserInterface {
                     line = br.readLine();
                 }
 
-                try (BufferedWriter bw = new BufferedWriter(new FileWriter("src/Users.txt"))) {
+                try (BufferedWriter bw = new BufferedWriter(new FileWriter("Users.txt"))) {
                     for (int i = 0; i < tempUsers.size(); i++) {
                         line = "";
                         for (int j = 0; j < tempUsers.get(i).length; j++) {
@@ -469,10 +469,10 @@ public class User implements UserInterface {
 
     public void update() {
         if (f == null) {
-            f = new File("Resources/" + username + "s_Friends.txt");
+            f = new File("../Resources/" + username + "s_Friends.txt");
         }
         if (b == null) {
-            b = new File("Resources/" + username + "s_Blocklist.txt");
+            b = new File("../Resources/" + username + "s_Blocklist.txt");
         }
         if (friends == null) {
             friends = new ArrayList<>();

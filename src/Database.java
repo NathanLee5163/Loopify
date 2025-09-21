@@ -87,7 +87,7 @@ public class Database implements DatabaseInterface {
 
     // Adds a post string to postOutput
     public static synchronized void addPost(Post post) {
-        String postsFilePath = "src/Posts.txt";
+        String postsFilePath = "Posts.txt";
         File postsFile = new File(postsFilePath);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(postsFile, true))) {

@@ -166,7 +166,7 @@ public class ClientHandler implements Runnable, ClientHandlerInterface {
             String friends = "";
             ArrayList<String> onlineUsers = new ArrayList<>();
 
-            try (BufferedReader br = new BufferedReader(new FileReader("Resources/Online.txt"))) {
+            try (BufferedReader br = new BufferedReader(new FileReader("../Resources/Online.txt"))) {
                 String line = br.readLine();
                 while (line != null) {
                     onlineUsers.add(line);
@@ -216,7 +216,7 @@ public class ClientHandler implements Runnable, ClientHandlerInterface {
             }
 
             if (user.getPassword().equals(password)) {
-                File f = new File("Resources/Online.txt");
+                File f = new File("../Resources/Online.txt");
                 try {
                     f.createNewFile();
                 } catch (IOException e1) {
@@ -273,7 +273,7 @@ public class ClientHandler implements Runnable, ClientHandlerInterface {
     public synchronized String handleLogout(String[] tokens) {
         String username = tokens[1];
 
-        File f = new File("Resources/Online.txt");
+        File f = new File("../Resources/Online.txt");
 
         try (BufferedReader br = new BufferedReader(new FileReader(f))) {
             String line = br.readLine();

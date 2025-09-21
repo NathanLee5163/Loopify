@@ -26,7 +26,7 @@ public class Post implements PostInterface {
         this.likes = 0;
         this.dislikes = 0;
         this.comments = new ArrayList<>();
-        this.commentsFilePath = "Resources/" + this.postId + "_comments.txt";
+        this.commentsFilePath = "../Resources/" + this.postId + "_comments.txt";
         ensureCommentsFileExists();
 
     }
@@ -38,7 +38,7 @@ public class Post implements PostInterface {
         this.likes = likes;
         this.dislikes = dislikes;
         this.deleted = false;  // Default value since `deleted` is not in the file
-        this.commentsFilePath = "Resources/" + this.postId + "_comments.txt";
+        this.commentsFilePath = "../Resources/" + this.postId + "_comments.txt";
         ensureCommentsFileExists();
     }
 
@@ -49,7 +49,7 @@ public class Post implements PostInterface {
         this.likes = 0;        // Default value
         this.dislikes = 0;     // Default value
         this.deleted = false;  // Default value
-        this.commentsFilePath = "Resources/" + this.postId + "_comments.txt";
+        this.commentsFilePath = "../Resources/" + this.postId + "_comments.txt";
         ensureCommentsFileExists();
     }
 
@@ -72,8 +72,8 @@ public class Post implements PostInterface {
     }
 
     public void addComment(String comment) {
-        System.out.println("Adding comment to file: " + "Resources/" + this.postId + "_comments.txt");  // Debugging
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Resources/" + this.postId + "_comments.txt", true))) {
+        System.out.println("Adding comment to file: " + "../Resources/" + this.postId + "_comments.txt");  // Debugging
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("../Resources/" + this.postId + "_comments.txt", true))) {
             writer.write(comment);
             writer.newLine();
         } catch (IOException e) {
@@ -82,8 +82,8 @@ public class Post implements PostInterface {
     }
 
     public void removeComment(String username, String comment) {
-        System.out.println("Removing comment from file: " + "Resources/" + this.postId + "_comments.txt");
-        try (BufferedReader br = new BufferedReader(new FileReader("Resources/" + this.postId + "_comments.txt"))) {
+        System.out.println("Removing comment from file: " + "../Resources/" + this.postId + "_comments.txt");
+        try (BufferedReader br = new BufferedReader(new FileReader("../Resources/" + this.postId + "_comments.txt"))) {
             String line = br.readLine();
             ArrayList<String> comments = new ArrayList<>();
 
@@ -96,7 +96,7 @@ public class Post implements PostInterface {
                 line = br.readLine();
             }
 
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter("Resources/" + this.postId + "_comments.txt"))) {
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter("../Resources/" + this.postId + "_comments.txt"))) {
                 for (String s : comments) {
                     bw.write(s + System.lineSeparator());
                 }
@@ -108,7 +108,7 @@ public class Post implements PostInterface {
 
     public List<String> getComments() {
         List<String> comments = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader("Resources/" + this.postId + "_comments.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("../Resources/" + this.postId + "_comments.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 comments.add(line);
@@ -125,7 +125,7 @@ public class Post implements PostInterface {
             // Prevent multiple resets
             return postCounter;
         }
-        String postsFilePath = "src/Posts.txt";
+        String postsFilePath = "Posts.txt";
         File postsFile = new File(postsFilePath);
         if (!postsFile.exists()) {
             return 0; // Start from 0 if the file doesn't exist
